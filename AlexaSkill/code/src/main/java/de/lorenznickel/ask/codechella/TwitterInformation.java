@@ -24,6 +24,6 @@ public class TwitterInformation {
         } catch (TwitterException e) {
             e.printStackTrace();
         }
-        return "An internal error occured from the Twitter API.";
+        return "An internal error occurred from the Twitter API.";
     }
 }
