@@ -12,42 +12,31 @@
       <!-- show login when not authenticated -->
       <v-btn
         class="ma-2"
-        :loading="loading"
-        :disabled="loading"
         v-if="!$auth.isAuthenticated" 
         @click="login"
         color="button"
       >
       Log in
       </v-btn>
-      <v-btn
-        class="ma-2"
-        :loading="loading"
-        :disabled="loading"
-        v-if="$auth.isAuthenticated"
-        @click="logout"
-        color="button"
-      >
-        Log out
-      </v-btn>
     </div>
-
-
     </v-app-bar>
-      <div class="home">
 
-  </div>
+  <user-session  v-if="$auth.isAuthenticated"></user-session>
+  <twitter-session v-if="$auth.isAuthenticated"></twitter-session>
+
   </div>
 
 </template>
 
 <script>
-// .. imports removed for brevity
+import UserSession from './UserSession.vue';
+import TwitterSession from './TwitterSession.vue';
 
 export default {
   name: "home",
   components: {
-    
+    UserSession,
+    TwitterSession
   },
   methods: {
     // Log the user in
