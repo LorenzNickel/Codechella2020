@@ -31,7 +31,7 @@ public class TwitterInformation {
                 Arrays.stream(status.getMediaEntities()).forEach(e -> {
                     text.replace(e.getExpandedURL(), "link");
                 });
-                return status.getText();
+                return status.getUser().getScreenName() + " is tweeting: " + text;
             }
         } catch (TwitterException e) {
             e.printStackTrace();
