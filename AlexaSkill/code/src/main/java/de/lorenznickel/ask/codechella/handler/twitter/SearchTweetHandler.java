@@ -2,7 +2,10 @@ package main.java.de.lorenznickel.ask.codechella.handler.twitter;
 
 import com.amazon.ask.dispatcher.request.handler.HandlerInput;
 import com.amazon.ask.dispatcher.request.handler.RequestHandler;
+import com.amazon.ask.model.Intent;
+import com.amazon.ask.model.IntentRequest;
 import com.amazon.ask.model.Response;
+import com.amazon.ask.model.Slot;
 import main.java.de.lorenznickel.ask.codechella.JsonReader;
 import main.java.de.lorenznickel.ask.codechella.MySQL;
 import main.java.de.lorenznickel.ask.codechella.TwitterInformation;
@@ -12,11 +15,11 @@ import java.util.Optional;
 
 import static com.amazon.ask.request.Predicates.intentName;
 
-public class LatestTweetHandler implements RequestHandler {
+public class SearchTweetHandler implements RequestHandler {
 
     @Override
     public boolean canHandle(HandlerInput input) {
-        return input.matches(intentName("lastTweetTimeline"));
+        return input.matches(intentName("searchTweet"));
     }
 
     @Override
@@ -33,7 +36,9 @@ public class LatestTweetHandler implements RequestHandler {
                     .withShouldEndSession(true)
                     .build();
             } else {
-                String speechText = TwitterInformation.getLastTweet(user);
+                Intent intent = ((IntentRequest) input.getRequestEnvelope().getRequest()).getIntent();
+                final String query = intent.getSlots().get("query").getValue();
+                String speechText = TwitterInformation.getSearchResults(user, query);
                 return input.getResponseBuilder()
                     .withSpeech(speechText)
                     .withShouldEndSession(true)

@@ -7,6 +7,7 @@ import main.java.de.lorenznickel.ask.codechella.credentials.Credentials;
 import main.java.de.lorenznickel.ask.codechella.credentials.EnviromentVariableCredentials;
 import main.java.de.lorenznickel.ask.codechella.handler.*;
 import main.java.de.lorenznickel.ask.codechella.handler.twitter.LatestTweetHandler;
+import main.java.de.lorenznickel.ask.codechella.handler.twitter.SearchTweetHandler;
 
 public class StreamHandler extends SkillStreamHandler {
 
@@ -20,7 +21,8 @@ public class StreamHandler extends SkillStreamHandler {
                 new HelpIntentHandler(),
                 new LaunchRequestHandler(),
                 new SessionEndedRequestHandler(),
-                new LatestTweetHandler()
+                new LatestTweetHandler(),
+                new SearchTweetHandler()
             )
             .withSkillId(credentials.getSkillId())
             .build();

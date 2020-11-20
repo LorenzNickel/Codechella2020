@@ -37,9 +37,60 @@
         {
           "name": "AMAZON.FallbackIntent",
           "samples": []
+        },
+        {
+          "name": "searchTweet",
+          "slots": [
+            {
+              "name": "query",
+              "type": "AMAZON.SearchQuery",
+              "samples": ["for {query}", "Search for {query}", "{query}"]
+            }
+          ],
+          "samples": [
+            "to search for {query}",
+            "give me a tweet about {query}",
+            "Search for {query}"
+          ]
         }
       ],
       "types": []
-    }
+    },
+    "dialog": {
+      "intents": [
+        {
+          "name": "searchTweet",
+          "confirmationRequired": false,
+          "prompts": {},
+          "slots": [
+            {
+              "name": "query",
+              "type": "AMAZON.SearchQuery",
+              "confirmationRequired": false,
+              "elicitationRequired": true,
+              "prompts": {
+                "elicitation": "Elicit.Slot.1291939669798.239620877631"
+              }
+            }
+          ]
+        }
+      ],
+      "delegationStrategy": "ALWAYS"
+    },
+    "prompts": [
+      {
+        "id": "Elicit.Slot.1291939669798.239620877631",
+        "variations": [
+          {
+            "type": "PlainText",
+            "value": "What should I search for?"
+          },
+          {
+            "type": "PlainText",
+            "value": "Please specify a query I should search for."
+          }
+        ]
+      }
+    ]
   }
 }
