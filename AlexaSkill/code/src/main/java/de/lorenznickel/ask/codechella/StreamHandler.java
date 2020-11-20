@@ -8,6 +8,7 @@ import main.java.de.lorenznickel.ask.codechella.credentials.EnviromentVariableCr
 import main.java.de.lorenznickel.ask.codechella.handler.*;
 import main.java.de.lorenznickel.ask.codechella.handler.twitter.LatestTweetHandler;
 import main.java.de.lorenznickel.ask.codechella.handler.twitter.SearchTweetHandler;
+import main.java.de.lorenznickel.ask.codechella.handler.twitter.UserTimelineIntent;
 
 public class StreamHandler extends SkillStreamHandler {
 
@@ -22,7 +23,8 @@ public class StreamHandler extends SkillStreamHandler {
                 new LaunchRequestHandler(),
                 new SessionEndedRequestHandler(),
                 new LatestTweetHandler(),
-                new SearchTweetHandler()
+                new SearchTweetHandler(),
+                new UserTimelineIntent()
             )
             .withSkillId(credentials.getSkillId())
             .build();

@@ -52,6 +52,22 @@
             "give me a tweet about {query}",
             "Search for {query}"
           ]
+        },
+        {
+          "name": "userTimline",
+          "slots": [
+            {
+              "name": "query",
+              "type": "AMAZON.SearchQuery"
+            }
+          ],
+          "samples": [
+            "a tweet from {query}",
+            "for the most recent tweet from {query}",
+            "for the last tweet from {query}",
+            "What's the last thing {query} has tweeted",
+            "Give me the last tweet from {query}"
+          ]
         }
       ],
       "types": []
