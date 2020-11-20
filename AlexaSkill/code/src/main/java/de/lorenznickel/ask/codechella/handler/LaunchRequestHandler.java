@@ -30,6 +30,7 @@ public class LaunchRequestHandler implements RequestHandler {
             if (mysql.userExists(user)) {
                 return input.getResponseBuilder()
                     .withSpeech("Hello " + user.getName() + ", how can I help you ?")
+                    .withShouldEndSession(false)
                     .build();
             } else {
                 return input.getResponseBuilder()
