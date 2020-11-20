@@ -11,12 +11,14 @@ public class TwitterInformation {
             .setOAuthConsumerKey(StreamHandler.getCredentials().getConsumerKey())
             .setOAuthConsumerSecret(StreamHandler.getCredentials().getConsumerSecret())
             .setOAuthAccessToken(user.getAccessToken())
-            .setOAuthAccessTokenSecret(user.getSecretToken());
+            .setOAuthAccessTokenSecret(user.getSecretToken())
+            .setTweetModeExtended(true);
         TwitterFactory tf = new TwitterFactory(cb.build());
         Twitter twitter = tf.getInstance();
         try {
             final ResponseList<Status> homeTimeline = twitter.getHomeTimeline();
-            if(homeTimeline.size() == 0) {
+            homeTimeline.removeIf(Status::isRetweet);
+            if (homeTimeline.size() == 0) {
                 return "No Tweets found. Are you following some people?";
             } else {
                 return homeTimeline.get(0).getText();
