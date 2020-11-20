@@ -1,16 +1,44 @@
 <template>
-  <div class="home">
-    <img alt="Vue logo" src="../assets/logo.png" />
-    <HelloWorld msg="Welcome to Your Vue.js App" />
-
-    <!-- Check that the SDK client is not currently loading before accessing is methods -->
-    <div v-if="!$auth.loading">
+  <div>
+    <v-app-bar
+      color="primary"
+      dense
+      dark
+    >
+      <v-toolbar-title>Codechella</v-toolbar-title>
+      <v-spacer></v-spacer>
+      <!--LOGIN BTN-->
+      <div v-if="!$auth.loading">
       <!-- show login when not authenticated -->
-      <button v-if="!$auth.isAuthenticated" @click="login">Log in</button>
-      <!-- show logout when authenticated -->
-      <button v-if="$auth.isAuthenticated" @click="logout">Log out</button>
+      <v-btn
+        class="ma-2"
+        :loading="loading"
+        :disabled="loading"
+        v-if="!$auth.isAuthenticated" 
+        @click="login"
+        color="button"
+      >
+      Log in
+      </v-btn>
+      <v-btn
+        class="ma-2"
+        :loading="loading"
+        :disabled="loading"
+        v-if="$auth.isAuthenticated"
+        @click="logout"
+        color="button"
+      >
+        Log out
+      </v-btn>
     </div>
+
+
+    </v-app-bar>
+      <div class="home">
+
   </div>
+  </div>
+
 </template>
 
 <script>
@@ -19,7 +47,7 @@
 export default {
   name: "home",
   components: {
-    HelloWorld
+    
   },
   methods: {
     // Log the user in

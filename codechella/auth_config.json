@@ -1,4 +1,5 @@
 {
-    "domain": "dev-o-447j5u.eu.auth0.com",
-    "clientId": "f0V5G2uw5Gln1h5QtOteiox42RnczgoP"
+    "domain": "dev-qxonqcx5.us.auth0.com",
+    "clientId": "dDyqS0iL0FfMUcMqjBtabCQI9U7h8ojm",
+    "audience": "http://localhost:8081"
 }
