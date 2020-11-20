@@ -3,6 +3,8 @@ package main.java.de.lorenznickel.ask.codechella;
 import twitter4j.*;
 import twitter4j.conf.ConfigurationBuilder;
 
+import java.util.Arrays;
+
 public class TwitterInformation {
 
     public static String getLastTweet(final User user) {
@@ -21,7 +23,15 @@ public class TwitterInformation {
             if (homeTimeline.size() == 0) {
                 return "No Tweets found. Are you following some people?";
             } else {
-                return homeTimeline.get(0).getText();
+                final Status status = homeTimeline.get(0);
+                String text = status.getText();
+                Arrays.stream(status.getURLEntities()).forEach(e -> {
+                    text.replace(e.getExpandedURL(), "link");
+                });
+                Arrays.stream(status.getMediaEntities()).forEach(e -> {
+                    text.replace(e.getExpandedURL(), "link");
+                });
+                return status.getText();
             }
         } catch (TwitterException e) {
             e.printStackTrace();
