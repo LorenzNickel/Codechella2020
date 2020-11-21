@@ -101,7 +101,7 @@ export default {
   mounted: function() {
   // Here we initialize Pizzly.
   this.pizzly = new Pizzly({
-    host: "my-pizzly.herokuapp.com/",
+    host: "codechella2020.herokuapp.com/",
   });
 },
   methods: {
