@@ -21,7 +21,11 @@
     </div>
     </v-app-bar>
 
+    <!-- homepage -->
+    <intro v-if="!$auth.isAuthenticated"></intro>
+    <!-- amazon auth -->
   <user-session  v-if="$auth.isAuthenticated"></user-session>
+  <!-- twtter auth -->
   <twitter-session v-if="$auth.isAuthenticated"></twitter-session>
 
 
@@ -32,6 +36,7 @@
 <script>
 import UserSession from './UserSession.vue';
 import TwitterSession from './TwitterSession.vue';
+import Intro from './Intro.vue';
 
 
 export default {
@@ -39,6 +44,7 @@ export default {
   components: {
     UserSession,
     TwitterSession,
+    Intro
     
   },
   methods: {
