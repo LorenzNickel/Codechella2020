@@ -8,7 +8,9 @@ export default new Vuetify({
         themes: {
             light: {
                 primary: "#005670",
-                button: "#4298b5"
+                button: "#4298b5",
+                button2: "#0085ad",
+                button3: "#8db9ca",
             }
         }
     },

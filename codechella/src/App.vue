@@ -6,6 +6,7 @@
   </v-app>
 </template>
 
+
 <script>
 
 import Home from './views/Home';

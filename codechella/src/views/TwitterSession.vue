@@ -1,70 +1,146 @@
 <template>
     <div>
-        <v-card
-        class="mx-auto mt-8"
-        color="#26c6da"
+      <v-card
+        class="mx-auto mt-8 px-5"
+        color="#74d2e7"
         dark
         max-width="400"
     >
-    <v-card-title>
-        <v-icon
-            large
-            left
-        >
-        mdi-twitter
-        </v-icon>
-        <span class="title font-weight-light">Twitter</span>
-    </v-card-title>
+      <v-card-title>
+          <v-icon
+              large
+              left
+          >
+          mdi-twitter
+          </v-icon>
+          <span class="title font-weight-light">Twitter</span>
+      </v-card-title>
+      <h2 v-if="this.logged">{{ this.user.name }}</h2>
+      <p  v-if="this.logged">{{ this.user.email }}</p>
+
 
     <!--LOGIN BTN-->
       <div >
       <!-- show login when not authenticated -->
       <v-btn
         class="ma-2"
-
-        @click="login"
         color="button"
+        @click.prevent="connect"
+        v-if="!logged"
       >
       Log in
       </v-btn>
       <v-btn
         class="ma-2"
-    
-        @click="logout"
         color="button"
+        v-if="this.logged"
+        @click="logout"
       >
         Log out
       </v-btn>
     </div>
-    <v-card-actions>
-      <v-list-item class="grow">
-        <v-list-item-avatar color="grey darken-3">
-          <v-img
-            class="elevation-6"
-            alt=""
-            src="https://avataaars.io/?avatarStyle=Transparent&topType=ShortHairShortCurly&accessoriesType=Prescription02&hairColor=Black&facialHairType=Blank&clotheType=Hoodie&clotheColor=White&eyeType=Default&eyebrowType=DefaultNatural&mouthType=Default&skinColor=Light"
-          ></v-img>
-        </v-list-item-avatar>
+      </v-card>
+      <v-card
+        v-if="this.logged"
+        class="mx-auto mt-8 px-5"
+        color="primary"
+        dark
+        max-width="400"
+        >
+        <v-card-title>
+          <v-icon
+            large
+            left
+          >
+            mdi-check-bold
+        </v-icon>
+      <span class="title font-weight-light">Connections</span>
+      </v-card-title>
+      <v-row>
+        <p class="title font-weight-light">Amazon</p>
+      </v-row>
+      <v-row>
+        <p class="title font-weight-light">Twitter</p>
+      </v-row>
 
-        <v-list-item-content>
-          <v-list-item-title>Evan You</v-list-item-title>
-        </v-list-item-content>
-      </v-list-item>
-        </v-card-actions>
+      <v-btn
+          class="ma-2"
+          v-if="this.logged && !this.status"
+          @click="save"
+          color="button"
+      >
+        Save both
+      </v-btn>
     </v-card>
   </div>
 
 </template>
 
 <script>
+import Pizzly from '../../node_modules/pizzly-js'
+import auth from '../configuration/user'
+import Credentials from '../services/Credentials'
 
 
 export default {
   name: "twitter",
+  data: function () {
+    return {
+      user: null,
+      pizzly: '',
+      logged : false,
+      status: false
+    }
+  },
+
   components: {
     
   },
+  mounted: function() {
+  // Here we initialize Pizzly.
+  this.pizzly = new Pizzly({
+    host: "my-pizzly.herokuapp.com/",
+  });
+},
   methods: {
+    connect: async function() {
+      //set conf session
+      this.user = auth
+
+      const myAPI = this.pizzly.integration('twitter')
+
+        myAPI.connect()
+        .then((auth) => {
+          this.user = auth
+          console.log('Successfully logged in!')
+        }).catch(this.connectError);
+
+        this.logged = true
+    },
+    connectSuccess: function(data) {
+      // On success, we update the user object
+      this.user = data.authId;
+      console.log('Successfully logged in!')
+    },
+    connectError: function (err) {
+      console.log(err)
+    },
+    logout: function(){
+      this.logged = false
+    },
+    save: async function(){
+      const cred= {
+          amzn_user_id: this.$auth.user.sub,
+          amzn_name: this.$auth.user.name,
+          amzn_email: this.$auth.user.email,
+          twitter_accessToken: this.user.accessToken,
+          twitter_secretToken: this.user.tokenSecret
+      }
+      let status = await Credentials.saveCredentials(cred)
+      if(status === 200){
+        this.status = true
+      }
+    }
     
   }
 };

@@ -9,28 +9,28 @@
 
     >
     <v-card-title>
-        <v-icon
+      <v-icon
             large
             left
-        >
+      >
         mdi-amazon
-        </v-icon>
-        <span class="title font-weight-light">Amazon</span>
-    </v-card-title>
-    <h2>{{ $auth.user.name }}</h2>
-    <p>{{ $auth.user.email }}</p>
-    <p>{{ $auth.user.nickname }}</p>
-    <p>{{ $auth.user.sub }}</p>
+      </v-icon>
+      <span class="title font-weight-light">Amazon</span>
+      </v-card-title>
+      <h2>{{$auth.user.name }}</h2>
+      <p>{{ $auth.user.email }}</p>
+      <p>{{ $auth.user.nickname }}</p>
+      <p>{{ $auth.user.sub }}</p>
     
     
-    <v-btn
-      class="ma-2"
-      v-if="$auth.isAuthenticated"
-      @click="logout"
-      color="button"
-    >
-      Log out
-    </v-btn>
+      <v-btn
+        class="ma-2"
+        v-if="$auth.isAuthenticated"
+        @click="logout"
+        color="button"
+      >
+        Log out
+      </v-btn>
     </v-card>
     <!-- <div>
       <img :src="$auth.user.picture">

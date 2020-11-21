@@ -24,6 +24,7 @@
   <user-session  v-if="$auth.isAuthenticated"></user-session>
   <twitter-session v-if="$auth.isAuthenticated"></twitter-session>
 
+
   </div>
 
 </template>
@@ -32,11 +33,13 @@
 import UserSession from './UserSession.vue';
 import TwitterSession from './TwitterSession.vue';
 
+
 export default {
   name: "home",
   components: {
     UserSession,
-    TwitterSession
+    TwitterSession,
+    
   },
   methods: {
     // Log the user in
