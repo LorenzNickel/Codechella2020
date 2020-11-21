@@ -52,14 +52,16 @@
             large
             left
           >
-            mdi-check-bold
+            mdi-transit-connection-horizontal
         </v-icon>
       <span class="title font-weight-light">Connections</span>
       </v-card-title>
-      <v-row>
+      <v-row class="px-5">
+        <v-icon small color="#89ba16" v-if="this.status"> mdi-check-bold</v-icon>
         <p class="title font-weight-light">Amazon</p>
       </v-row>
-      <v-row>
+      <v-row class="px-5">
+        <v-icon small color="#89ba16" v-if="this.status">mdi-check-bold</v-icon>
         <p class="title font-weight-light">Twitter</p>
       </v-row>
 
@@ -137,6 +139,7 @@ export default {
           twitter_secretToken: this.user.tokenSecret
       }
       let status = await Credentials.saveCredentials(cred)
+      console.log(status)
       if(status === 200){
         this.status = true
       }
@@ -145,3 +148,9 @@ export default {
   }
 };
 </script>
+<style>
+  p {
+    margin: 0 !important;
+  }
+
+</style>
