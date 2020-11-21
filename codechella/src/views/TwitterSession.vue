@@ -111,12 +111,11 @@ export default {
 
       const myAPI = this.pizzly.integration('twitter')
 
-        myAPI.connect()
+        await myAPI.connect()
         .then((auth) => {
           this.user = auth
           console.log('Successfully logged in!')
         }).catch(this.connectError);
-
         this.logged = true
     },
     connectSuccess: function(data) {
@@ -132,7 +131,7 @@ export default {
     },
     save: async function(){
       const cred= {
-          amzn_user_id: this.$auth.user.sub,
+          amzn_user_id: this.$auth.user.sub.substring(7, this.$auth.user.sub.length),
           amzn_name: this.$auth.user.name,
           amzn_email: this.$auth.user.email,
           twitter_accessToken: this.user.accessToken,
