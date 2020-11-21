@@ -40,6 +40,7 @@ public class UserTimelineIntent implements RequestHandler {
                 String speechText = TwitterInformation.getLastTweetFrom(user, query);
                 return input.getResponseBuilder()
                     .withSpeech(speechText)
+                    .withSimpleCard("Codechella 2020", speechText)
                     .withShouldEndSession(true)
                     .build();
             }

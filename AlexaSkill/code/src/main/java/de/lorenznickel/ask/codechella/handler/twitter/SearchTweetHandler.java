@@ -41,6 +41,7 @@ public class SearchTweetHandler implements RequestHandler {
                 String speechText = TwitterInformation.getSearchResults(user, query);
                 return input.getResponseBuilder()
                     .withSpeech(speechText)
+                    .withSimpleCard("Codechella 2020", speechText)
                     .withShouldEndSession(true)
                     .build();
             }
