@@ -2,10 +2,10 @@
 
 ## Instructions to run
 ```
-npm i
+npm install
 npm run serve
 ```
-* the local development server will run on https://localhost:8081
+* the local development server will be running on **https://localhost:8081**
 
 ## Twitter + Amazon Alexa skill
 @alexaSkill folder
