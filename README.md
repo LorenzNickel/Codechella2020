@@ -1,6 +1,9 @@
 # 💻 Codechella2020
 
-## Instructions to run
+## Instructions to run the webpage
+* clone the repo
+* cd into @codechella
+* open terminal
 ```
 npm install
 npm run serve
