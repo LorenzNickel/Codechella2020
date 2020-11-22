@@ -1,17 +1,17 @@
 # 💻 Codechella2020
 
-
-
-## Web Application 
-@coachella folder
-
-## Server 
-@coachella/server folder, set database credentials (database/database.js)
-
+## Instructions to run
 ```
 npm i
 npm run server
 localhost 8081
 ```
-## Twitter + Alexa
+
+## Twitter + Amazon Alexa skill
 @alexaSkill folder
+
+## Web Application 
+@codechella folder
+
+## Server 
+@codechella/server folder, set database credentials (database/database.js)
