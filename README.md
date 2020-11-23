@@ -1,4 +1,4 @@
-# 💻 Codechella2020
+# 💻 Codechella2020 ~ Third Place Overall!
 
 ## Instructions to run the webpage
 * clone the repo
